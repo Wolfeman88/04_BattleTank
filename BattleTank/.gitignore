@@ -1,4 +1,6 @@
 *.VC.opendb
+BattleTank\Content\StarterContent\Textures
+BattleTank\Content\StarterContent\HDRI
 
 # Compiled Object files
 *.slo
