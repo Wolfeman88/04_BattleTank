@@ -9,3 +9,18 @@ ATank* ATankPlayerController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
+void ATankPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	ATank* myPawn = GetControlledTank();
+
+	if (myPawn)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player Controller Begin Play: %s"), *myPawn->GetName());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No Player Controller Found"));
+	}
+}
