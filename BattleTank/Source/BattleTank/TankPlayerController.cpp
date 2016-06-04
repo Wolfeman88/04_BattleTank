@@ -4,11 +4,6 @@
 #include "TankPlayerController.h"
 
 
-ATank* ATankPlayerController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
-
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -23,4 +18,9 @@ void ATankPlayerController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("No Player Controller Found"));
 	}
+}
+
+ATank* ATankPlayerController::GetControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
 }
