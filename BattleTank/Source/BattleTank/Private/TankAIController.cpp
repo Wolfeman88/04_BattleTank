@@ -7,18 +7,31 @@ void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ATank* myPawn = GetControlledTank();
+	myPawn = GetControlledTank();
 
 	if (!myPawn)
 	{
 		UE_LOG(LogTemp, Error, TEXT("No AI Controller Found"));
 	}
 
-	ATank* playerControlledTank = GetPlayerTank();
+	playerControlledTank = GetPlayerTank();
 
 	if (!playerControlledTank)
 	{
 		UE_LOG(LogTemp, Error, TEXT("No Player Tank Found"));
+	}
+}
+
+void ATankAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if ((playerControlledTank) && (myPawn))
+	{
+		FVector AimTarget = playerControlledTank->GetActorLocation();
+		myPawn->AimAt(AimTarget);
+
+		// fire if ready
 	}
 }
 
