@@ -26,4 +26,12 @@ private:
 
 	// return OUT parameter, true if hit landscape
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
+
+	// horizontal percentage location of the crosshair (left edge is 0)
+	UPROPERTY(EditAnywhere)
+	float CrosshairXLocation = 0.5f;
+
+	// vertical percentage location of the crosshair (top edge is 0)
+	UPROPERTY(EditAnywhere)
+	float CrosshairYLocation = 0.33333f;
 };
