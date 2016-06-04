@@ -10,11 +10,7 @@ void ATankPlayerController::BeginPlay()
 
 	ATank* myPawn = GetControlledTank();
 
-	if (myPawn)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Player Controller Begin Play: %s"), *myPawn->GetName());
-	}
-	else
+	if (!myPawn)
 	{
 		UE_LOG(LogTemp, Error, TEXT("No Player Controller Found"));
 	}
