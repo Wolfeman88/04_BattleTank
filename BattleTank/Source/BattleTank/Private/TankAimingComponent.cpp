@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BattleTank.h"
+#include "TankBarrel.h"
 #include "TankAimingComponent.h"
 
 
@@ -37,18 +38,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 		if (bHaveAimSolution)
 		{
 			FVector AimDirection = OutLaunchVelocity.GetSafeNormal();
-			MoveBarrelTowards(AimDirection);
+			Barrel->MoveTo(AimDirection.Rotation().Pitch);
 		}
 	}
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
-}
-
-void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
-{
-	UE_LOG(LogTemp, Warning, TEXT("%f"), AimDirection.Rotation().Pitch);
 }
 
