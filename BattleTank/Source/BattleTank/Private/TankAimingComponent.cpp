@@ -15,25 +15,6 @@ UTankAimingComponent::UTankAimingComponent()
 	// ...
 }
 
-
-// Called when the game starts
-void UTankAimingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
-{
-	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
-
-	// ...
-}
-
 void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 {
 	if (Barrel)
@@ -41,7 +22,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 		FVector OutLaunchVelocity;
 		FVector StartLocation = Barrel->GetSocketLocation(FName ("BarrelTip"));
 
-		bool check = UGameplayStatics::SuggestProjectileVelocity (
+		bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity (
 			this,														// world context object
 			OutLaunchVelocity,											// out parameter for launch direction
 			StartLocation,												// start location of the projectile
@@ -53,10 +34,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 			ESuggestProjVelocityTraceOption::DoNotTrace					// dictating how to trace the path
 		);
 
-		if (check)
+		if (bHaveAimSolution)
 		{
 			FVector AimDirection = OutLaunchVelocity.GetSafeNormal();
-			UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *GetOwner()->GetName(),  *AimDirection.ToString());
+			MoveBarrelTowards(AimDirection);
 		}
 	}
 }
@@ -64,5 +45,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
 {
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
+{
+	UE_LOG(LogTemp, Warning, TEXT("%f"), AimDirection.Rotation().Pitch);
 }
 
