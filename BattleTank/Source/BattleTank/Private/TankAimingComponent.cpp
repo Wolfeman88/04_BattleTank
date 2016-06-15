@@ -24,15 +24,16 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 		FVector StartLocation = Barrel->GetSocketLocation(FName ("BarrelTip"));
 
 		bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity (
-			this,														// world context object
-			OutLaunchVelocity,											// out parameter for launch direction
-			StartLocation,												// start location of the projectile
-			HitLocation,												// end location of the projectile
-			launchSpeed,												// initial speed of the projectile
-			false,														// prefer hight path flag
-			0.0f,														// projectile size
-			0.0f,														// override gravity
-			ESuggestProjVelocityTraceOption::DoNotTrace					// dictating how to trace the path
+			this,													
+			OutLaunchVelocity,									
+			StartLocation,										
+			HitLocation,										
+			launchSpeed,										
+			false,													
+			0.0f,												
+			0.0f,
+			ESuggestProjVelocityTraceOption::DoNotTrace		// parameter must be present to prevent bug
+			// TODO report bug
 		);
 
 		if (bHaveAimSolution)
