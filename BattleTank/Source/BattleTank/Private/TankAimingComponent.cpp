@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "TankAimingComponent.h"
 
 
@@ -32,20 +33,31 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 			false,													
 			0.0f,												
 			0.0f,
-			ESuggestProjVelocityTraceOption::DoNotTrace		// parameter must be present to prevent bug
-			// TODO report bug
+			ESuggestProjVelocityTraceOption::DoNotTrace	
 		);
 
 		if (bHaveAimSolution)
 		{
 			FVector AimDirection = OutLaunchVelocity.GetSafeNormal();
 			Barrel->MoveTo(AimDirection.Rotation().Pitch);
+			Turret->MoveTo(AimDirection.Rotation().Yaw);
 		}
 	}
 }
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
-	Barrel = BarrelToSet;
+	if (BarrelToSet)
+	{
+		Barrel = BarrelToSet;
+	}
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	if (TurretToSet)
+	{
+		Turret = TurretToSet;
+	}
 }
 
