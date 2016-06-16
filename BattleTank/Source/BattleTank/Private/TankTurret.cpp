@@ -5,25 +5,16 @@
 
 void UTankTurret::MoveTo(float Yaw)
 {
+	float RelativeYaw = GetForwardVector().Rotation().Yaw;
 	// clamping and scaling the (target - previous) turret rotation to maximum rotation speed
-	float RotationChange = FMath::Clamp((ShiftRotation360(Yaw) - ShiftRotation360(RelativeRotation.Yaw)), -MaxDegreesPerSecond, MaxDegreesPerSecond);
+	float RotationChange = FMath::Clamp(Yaw - RelativeYaw, -MaxDegreesPerSecond, MaxDegreesPerSecond);
 	RotationChange *= GetWorld()->DeltaTimeSeconds;
-
-	if (MaxDegreesPerSecond == 50)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%f"), RotationChange);
-	}
 	
 	// update the new pitch target rotation
-	float RawNewPitch = RelativeRotation.Yaw + RotationChange;
+	float Rotation = RelativeRotation.Yaw + RotationChange; 
 
 	// rotating the barrel to the new target rotation
-	SetRelativeRotation(FRotator(0, RawNewPitch, 0));
-}
-
-float UTankTurret::ShiftRotation360(float angle)
-{
-	return angle + 360;
+	SetRelativeRotation(FRotator(0, Rotation, 0));
 }
 
 
