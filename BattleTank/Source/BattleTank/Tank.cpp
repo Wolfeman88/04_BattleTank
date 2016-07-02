@@ -55,8 +55,6 @@ void ATank::SetTurretReference(UTankTurret * TurretToSet)
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("firing main cannon..."));
-
 	if (Barrel)
 	{
 		// initialize position and rotation of projectile to be spawned
@@ -64,7 +62,9 @@ void ATank::Fire()
 		FRotator BarrelDirection = Barrel->GetSocketRotation(FName ("BarrelTip"));
 		
 		// spawn a projectile at the socket location
-		GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, BarrelTip, BarrelDirection);
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, BarrelTip, BarrelDirection);
+
+		Projectile->LaunchProjectile(LaunchSpeed);
 	}
 }
 
