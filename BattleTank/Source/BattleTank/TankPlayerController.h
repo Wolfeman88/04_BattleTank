@@ -34,14 +34,14 @@ private:
 	bool GetLookDirection(FVector2D ScreenLoc, FVector& LookDirection) const;
 
 	// horizontal percentage location of the crosshair (left edge is 0)
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float CrosshairXLocation = 0.5f;
 
 	// vertical percentage location of the crosshair (top edge is 0)
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float CrosshairYLocation = 0.33333f;
 
 	// distance searched for something to hit by aiming functions
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.0f;
 };
