@@ -6,20 +6,30 @@
 
 void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)
 {
-	if (LeftTrackToSet && RightTrackToSet)
-	{
-		LeftTrack = LeftTrackToSet;
-		RightTrack = RightTrackToSet;
-	}
+	LeftTrack = LeftTrackToSet;
+	RightTrack = RightTrackToSet;
 }
-
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Intend move forward throw: %f"), Throw);
+	if (LeftTrack && RightTrack)
+	{
+		LeftTrack->SetThrottle(Throw);
+		RightTrack->SetThrottle(Throw);
+	}
 
-	LeftTrack->SetThrottle(Throw);
-	RightTrack->SetThrottle(Throw);
+	// TODO prevent double-speed from multiple inputs
+}
+
+void UTankMovementComponent::IntendTurnRight(float Throw)
+{
+	if (LeftTrack && RightTrack)
+	{
+		LeftTrack->SetThrottle(Throw);
+		RightTrack->SetThrottle(-Throw);
+	}
+
+	// TODO prevent double-speed from multiple inputs
 }
 
 
