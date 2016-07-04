@@ -18,6 +18,8 @@ void ATankAIController::Tick(float DeltaSeconds)
 
 	if ((playerControlledTank) && (myPawn))
 	{
+		MoveToActor(playerControlledTank, AcceptanceRadius);	// TODO check radius is in cm
+
 		FVector AimTarget = playerControlledTank->GetActorLocation();
 		myPawn->AimAt(AimTarget);
 
