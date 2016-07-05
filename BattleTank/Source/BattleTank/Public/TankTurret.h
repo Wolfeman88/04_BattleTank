@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Lone Wolfe Gaming - Kyle Wolfe
 
 #pragma once
 
@@ -8,7 +8,7 @@
 /**
  * 
  */
-UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent)/*, hidecategories(Collision)*/)
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API UTankTurret : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -17,6 +17,6 @@ public:
 	void MoveTo(float);
 
 private: 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-		float MaxDegreesPerSecond = 25;	
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float MaxDegreesPerSecond = 25;	
 };

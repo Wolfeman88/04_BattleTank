@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Lone Wolfe Gaming - Kyle Wolfe
 
 #pragma once
 
@@ -17,12 +17,12 @@ public:
 	void MoveTo(float);
 	
 private:
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-		float MaxDegreesPerSecond = 10;
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float MaxDegreesPerSecond = 10;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-		float MaxDegreesElevation = 40;
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float MaxDegreesElevation = 40;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-		float MinDegreesElevation = 0;
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float MinDegreesElevation = 0;
 };

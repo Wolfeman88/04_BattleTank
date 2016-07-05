@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Lone Wolfe Gaming - Kyle Wolfe
 
 #include "BattleTank.h"
 #include "TankTrack.h"

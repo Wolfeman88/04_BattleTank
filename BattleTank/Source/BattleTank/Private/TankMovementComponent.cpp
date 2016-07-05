@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Lone Wolfe Gaming - Kyle Wolfe
 
 #include "BattleTank.h"
 #include "TankTrack.h"
@@ -29,8 +29,6 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 		LeftTrack->SetThrottle(Throw);
 		RightTrack->SetThrottle(Throw);
 	}
-
-	// TODO prevent double-speed from multiple inputs
 }
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
@@ -40,8 +38,4 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 		LeftTrack->SetThrottle(Throw);
 		RightTrack->SetThrottle(-Throw);
 	}
-
-	// TODO prevent double-speed from multiple inputs
 }
-
-
