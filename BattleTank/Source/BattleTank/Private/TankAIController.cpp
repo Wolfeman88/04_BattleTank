@@ -23,7 +23,7 @@ void ATankAIController::Tick(float DeltaSeconds)
 		FVector AimTarget = playerControlledTank->GetActorLocation();
 		myPawn->AimAt(AimTarget);
 
-		myPawn->Fire();		//TODO don't fire every frame
+		myPawn->Fire();	
 	}
 }
 
