@@ -29,8 +29,8 @@ public:
 
 	void AimAt(FVector, float);
 
-	void SetBarrelReference(UTankBarrel*);
-	void SetTurretReference(UTankTurret*);
+	UFUNCTION(BlueprintCallable, Category = "Input")
+	void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
