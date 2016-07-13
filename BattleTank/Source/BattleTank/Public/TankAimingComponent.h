@@ -34,7 +34,7 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringStatus FireStatus = EFiringStatus::Reloading;
+	EFiringStatus FireStatus = EFiringStatus::Aiming;
 
 private:
 	UTankBarrel* Barrel = nullptr;
