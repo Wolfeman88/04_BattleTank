@@ -1,6 +1,7 @@
 // Copyright Lone Wolfe Gaming - Kyle Wolfe
 
 #include "BattleTank.h"
+#include "TankAimingComponent.h"
 #include "Tank.h"
 #include "TankPlayerController.h"
 
@@ -14,6 +15,13 @@ void ATankPlayerController::BeginPlay()
 	if (!myPawn)
 	{
 		UE_LOG(LogTemp, Error, TEXT("No Player Controller Found"));
+	}
+
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+
+	if (AimingComponent)
+	{
+		FoundAimingComponent(AimingComponent);
 	}
 }
 
