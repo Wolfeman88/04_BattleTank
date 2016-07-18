@@ -19,7 +19,7 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 {
-	if (Barrel)
+	if (ensure(Barrel))
 	{
 		FVector OutLaunchVelocity;
 		FVector StartLocation = Barrel->GetSocketLocation(FName ("BarrelTip"));

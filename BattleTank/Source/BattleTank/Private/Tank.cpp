@@ -25,7 +25,7 @@ void ATank::BeginPlay()
 
 void ATank::AimAt(FVector HitLocation)
 {
-	if (TankAimingComponent)
+	if (ensure(TankAimingComponent))
 	{
 		TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 	}
@@ -35,17 +35,20 @@ void ATank::Fire()
 {
 	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 
-	if (Barrel && isReloaded)
+	if (ensure(Barrel))
 	{
-		// initialize position and rotation of projectile to be spawned
-		FVector BarrelTip = Barrel->GetSocketLocation(FName("BarrelTip"));
-		FRotator BarrelDirection = Barrel->GetSocketRotation(FName ("BarrelTip"));
-		
-		// spawn a projectile at the socket location
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, BarrelTip, BarrelDirection);
+		if (isReloaded)
+		{
+			// initialize position and rotation of projectile to be spawned
+			FVector BarrelTip = Barrel->GetSocketLocation(FName("BarrelTip"));
+			FRotator BarrelDirection = Barrel->GetSocketRotation(FName("BarrelTip"));
 
-		Projectile->LaunchProjectile(LaunchSpeed);
-		LastFireTime = FPlatformTime::Seconds();
+			// spawn a projectile at the socket location
+			auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, BarrelTip, BarrelDirection);
+
+			Projectile->LaunchProjectile(LaunchSpeed);
+			LastFireTime = FPlatformTime::Seconds();
+		}
 	}
 }
 
