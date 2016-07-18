@@ -10,13 +10,6 @@ void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ATank* myPawn = GetControlledTank();
-
-	if (!myPawn)
-	{
-		UE_LOG(LogTemp, Error, TEXT("No Player Controller Found"));
-	}
-
 	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
 
 	if (ensure(AimingComponent))

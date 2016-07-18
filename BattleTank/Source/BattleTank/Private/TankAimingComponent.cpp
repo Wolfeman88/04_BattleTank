@@ -40,7 +40,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float launchSpeed)
 		{
 			FVector AimDirection = OutLaunchVelocity.GetSafeNormal();
 
-			if (Barrel && Turret)
+			if (ensure(Barrel) && ensure(Turret))
 			{
 				Barrel->MoveTo(AimDirection.Rotation().Pitch);
 				Turret->MoveTo(AimDirection.Rotation().Yaw);
