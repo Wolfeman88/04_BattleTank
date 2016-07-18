@@ -16,5 +16,3 @@ void UTankBarrel::MoveTo(float Pitch)
 	// rotating the barrel to the new target rotation
 	SetRelativeRotation(FRotator(RawNewPitch, 0, 0));
 }
-
-

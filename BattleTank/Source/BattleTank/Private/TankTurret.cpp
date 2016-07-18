@@ -16,5 +16,3 @@ void UTankTurret::MoveTo(float Yaw)
 	// rotating the barrel to the new target rotation
 	SetRelativeRotation(FRotator(0, Rotation, 0));
 }
-
-

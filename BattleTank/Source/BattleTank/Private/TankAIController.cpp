@@ -3,6 +3,7 @@
 #include "BattleTank.h"
 #include "Tank.h"
 #include "TankAIController.h"
+// depends on movement component via pathfinding system
 
 void ATankAIController::BeginPlay()
 {
@@ -26,5 +27,3 @@ void ATankAIController::Tick(float DeltaSeconds)
 		myPawn->Fire();	
 	}
 }
-
-
