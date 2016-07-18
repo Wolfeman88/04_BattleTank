@@ -18,6 +18,22 @@ UTankAimingComponent::UTankAimingComponent()
 	// ...
 }
 
+void UTankAimingComponent::BeginPlay()
+{
+	// so that first fire is after initial reload
+	LastFireTime = FPlatformTime::Seconds();
+}
+
+void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
+{
+	if ((FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds)
+	{
+		FireStatus = EFiringStatus::Reloading;
+	}
+
+	// TODO handle aiming and locked states
+}
+
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	if (ensure(Barrel))
@@ -58,11 +74,9 @@ void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* Tur
 
 void UTankAimingComponent::Fire()
 {
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-
-	if (ensure(Barrel && ProjectileBlueprint))
+	if (FireStatus != EFiringStatus::Reloading)
 	{
-		if (isReloaded)
+		if (ensure(Barrel && ProjectileBlueprint))
 		{
 			// initialize position and rotation of projectile to be spawned
 			FVector BarrelTip = Barrel->GetSocketLocation(FName("BarrelTip"));
