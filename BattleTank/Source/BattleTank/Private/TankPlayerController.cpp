@@ -24,14 +24,18 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	if (ensure(AimingComponent))
+	if (GetPawn())
 	{
-		FVector HitLocation; // out parameter
+		auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 
-		if (GetSightRayHitLocation(HitLocation)) // has "side-effect", going to line trace
+		if (ensure(AimingComponent))
 		{
-			AimingComponent->AimAt(HitLocation);
+			FVector HitLocation; // out parameter
+
+			if (GetSightRayHitLocation(HitLocation)) // has "side-effect", going to line trace
+			{
+				AimingComponent->AimAt(HitLocation);
+			}
 		}
 	}
 }
