@@ -6,7 +6,7 @@
 void UTankBarrel::MoveTo(float Pitch)
 {
 	// clamping and scaling the (target - previous) barrel rotation to maximum rotation speed
-	float ElevationChange = FMath::Clamp((Pitch - RelativeRotation.Pitch), -MaxDegreesPerSecond, MaxDegreesPerSecond);
+	float ElevationChange = FMath::Clamp(Pitch, -MaxDegreesPerSecond, MaxDegreesPerSecond);
 	ElevationChange *= GetWorld()->DeltaTimeSeconds;
 
 	// update and clamp the new pitch target rotation
