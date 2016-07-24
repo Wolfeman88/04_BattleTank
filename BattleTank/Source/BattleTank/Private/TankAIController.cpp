@@ -24,6 +24,10 @@ void ATankAIController::Tick(float DeltaSeconds)
 		
 		auto AimingComponent = ControlledTank->FindComponentByClass<UTankAimingComponent>();
 		AimingComponent->AimAt(AimTarget);
-		AimingComponent->Fire();
+
+		if (AimingComponent->GetFiringStatus() == EFiringStatus::Locked)
+		{
+			AimingComponent->Fire();
+		}
 	}
 }
