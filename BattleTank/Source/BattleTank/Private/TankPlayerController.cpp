@@ -32,7 +32,9 @@ void ATankPlayerController::AimTowardsCrosshair()
 		{
 			FVector HitLocation; // out parameter
 
-			if (GetSightRayHitLocation(HitLocation)) // has "side-effect", going to line trace
+			bool bGotHitLocation = GetSightRayHitLocation(HitLocation);
+
+			if (bGotHitLocation) // has "side-effect", going to line trace
 			{
 				AimingComponent->AimAt(HitLocation);
 			}
@@ -50,13 +52,14 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	
 	// de-project the screen position of the crosshair to world direction
 	FVector WorldDirection;
+	bool bReturnValue = false;
 	
 	if (GetLookDirection(ScreenLocation, WorldDirection))
 	{
-		GetLookVectorHitLocation(WorldDirection, HitLocation);
+		bReturnValue = GetLookVectorHitLocation(WorldDirection, HitLocation);
 	}
 
-	return true;
+	return bReturnValue;
 }
 
 bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const

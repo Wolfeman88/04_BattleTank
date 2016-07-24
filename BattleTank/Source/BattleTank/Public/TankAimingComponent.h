@@ -64,4 +64,6 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float BarrelMovingTolerance = 0.01f;
+
+	void MoveBarrelTowards(FVector);
 };
