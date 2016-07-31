@@ -1,7 +1,5 @@
 *.VC.opendb
-Content/StarterContent/Textures
-Content/StarterContent/HDRI
-Content/StarterContent/Maps
+BattleTank/.vs/
 
 # Compiled Object files
 *.slo
@@ -61,3 +59,8 @@ Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+BattleTank/Content/Tank/BT17-Firing-M1A1-tank-in-Djibouti.jpg
+BattleTank/Content/Tank/BT17-Firing-M1A1-tank-in-Djibouti.uasset
+
+
