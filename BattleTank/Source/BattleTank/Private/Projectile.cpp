@@ -59,6 +59,8 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 
 	CollisionMesh->SetVisibility(false);
 	CollisionMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	UGameplayStatics::ApplyRadialDamage(this, ProjectileDamage, GetActorLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>());
 	
 	FTimerHandle DestroyTimerHandle; 
 	GetWorldTimerManager().SetTimer(DestroyTimerHandle, this, &AProjectile::DestroyMyself, DestroyDelay, false);

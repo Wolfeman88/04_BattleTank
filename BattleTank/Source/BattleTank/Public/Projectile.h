@@ -41,8 +41,12 @@ private:
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	
 	// destroy myself stuff
-	UPROPERTY(EditDefaultsOnly, Category = "Destroy")
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float DestroyDelay = 1;
 
 	void DestroyMyself();
+
+	// damage stuff
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float ProjectileDamage;
 };
