@@ -39,4 +39,10 @@ private:
 
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	
+	// destroy myself stuff
+	UPROPERTY(EditDefaultsOnly, Category = "Destroy")
+	float DestroyDelay = 1;
+
+	void DestroyMyself();
 };

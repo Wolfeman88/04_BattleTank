@@ -59,4 +59,12 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 
 	CollisionMesh->SetVisibility(false);
 	CollisionMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	
+	FTimerHandle DestroyTimerHandle; 
+	GetWorldTimerManager().SetTimer(DestroyTimerHandle, this, &AProjectile::DestroyMyself, DestroyDelay, false);
+}
+
+void AProjectile::DestroyMyself()
+{
+	Destroy();
 }
