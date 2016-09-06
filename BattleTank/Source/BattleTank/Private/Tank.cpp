@@ -3,6 +3,18 @@
 #include "BattleTank.h"
 #include "Tank.h"
 
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
+}
+
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CurrentHealth = StartingHealth;
+}
+
 // Sets default values
 ATank::ATank()
 {
@@ -16,6 +28,11 @@ float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEv
 	auto ActualDamage = FMath::Min(CurrentHealth, DamagePoints);
 
 	CurrentHealth -= ActualDamage;
+
+	if (CurrentHealth <= 0)
+	{
+		OnDeath.Broadcast();
+	}
 
 	return ActualDamage;
 }
